@@ -3,7 +3,6 @@
 //Basically all your actual code is here!
 package edu.csumb.Webstore.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,33 +17,26 @@ import edu.csumb.Webstore.repositories.ProductRepository;
 public class ProductService
 {
     //We need to autowire the database here. If you are stuck, look at ProductController!
-    private List<Product> prodList = new ArrayList<Product>();
+    @Autowired
+    ProductRepository productRepo;
 
+    // private List<Product> prodList = new ArrayList<Product>();
     //We need to autowire the database here. If you are stuck, look at ProductController!
-    public Iterable<String> example()
-    {
-        List<String> sList = new ArrayList<>();
-        sList.add("Cameron is such a good TA, i'm going to give him 5 stars on every review!");
-        return sList;
-    }
+    // public Iterable<String> example()
+    // {
+    //     List<String> sList = new ArrayList<>();
+    //     sList.add("Cameron is such a good TA, i'm going to give him 5 stars on every review!");
+    //     return sList;
+    // }
 
     public List<Product> getAllProducts(){
-        return prodList;
+        return productRepo.findAll();
+    }    
+    public Optional<Product> getProductById(String id) throws IllegalArgumentException {
+        return productRepo.findById(id);
     }
-    
-    public Product getbyID(String id){
-        for (int i = 0; i < prodList.size(); i++) {
-            Product a = prodList.get(i);
-            if(a.getId().equals(id)){
-                return a;
-            }
-        }
-        return null;
-    }
-
-    
     public Product createProd(Product prod){
-        prodList.add(prod);
+        productRepo.insert(prod);
         return prod;
     }
 

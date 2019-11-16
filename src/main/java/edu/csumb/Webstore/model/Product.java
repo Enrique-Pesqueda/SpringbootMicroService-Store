@@ -3,10 +3,14 @@
 //or else you will have many errors.
 package edu.csumb.Webstore.model;
 
+import org.springframework.data.annotation.Id;
+
 public class Product
 {
-    private String name;
+    //member vars
+    @Id
     private String id;
+    private String name;
     private String description;
     private String imageURL;
     private Double price;

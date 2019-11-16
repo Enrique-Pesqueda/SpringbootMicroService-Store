@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
-import edu.csumb.Webstore.model.User;
+import edu.csumb.Webstore.model.Cart;
 import edu.csumb.Webstore.repositories.ProductRepository;
-import edu.csumb.Webstore.repositories.UserRepository;
-import edu.csumb.Webstore.service.UserService;
+import edu.csumb.Webstore.repositories.CartRepository;
+import edu.csumb.Webstore.service.CartService;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.ArrayList;
@@ -27,11 +27,11 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 @RestController
-public class UserController
+public class CartController
 {
 
     @Autowired
-    UserService userService;
+    CartService cartService;
 
     // @RequestMapping(method = RequestMethod.GET, value = "/products/example")
     // @ApiOperation(value = "An example of a api function to get you started." )
@@ -43,22 +43,36 @@ public class UserController
     //     return productService.example();
     // }
 
-    // Retrieving all users from services 
-    @RequestMapping(value = "/users/getAll", method= RequestMethod.GET)
-    @ApiOperation(value = "An api function to get all users from the database." )
-        public Iterable<User> getAllUsers() {
-        return userService.getAllUsers();
+    // Retrieving all products from services 
+    @RequestMapping(value = "/cart/getAll", method= RequestMethod.GET)
+    @ApiOperation(value = "An api function to get all products from the database." )
+        public Iterable<Cart> getAllCarts() {
+        return cartService.getAll();
     }
-    // Retrieving user by ID from services
-    @RequestMapping(value = "/users/get/{id}", method = RequestMethod.GET)
-    @ApiOperation(value = "An api function to get a user from the database by its id." )
-    public Optional<User> getUserById(@PathVariable("id") String id) {
-        return userService.getUserById(id);
+    
+    @RequestMapping(method= RequestMethod.POST, value ="cart/addProduct")
+    @ApiOperation(value = "Add new item to the cart of user")
+    public void addCart(@RequestBody String username, String id, int amount){
+        cartService.addToCart(username, id, amount);
     }
-    // Adding users to 
-    @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    @ApiOperation(value = "An api function to add users to the database." )
-    public User createUser(@Valid @RequestBody User user) {
-        return userService.createUser(user);
+    @RequestMapping(method= RequestMethod.POST, value ="cart/update")
+    @ApiOperation(value = "Update quantity of products")
+    public void updateCart(@RequestBody String username, String id, int amount){
+        cartService.updateCart(username, id, amount);
     }
+
+    @RequestMapping(method= RequestMethod.POST, value ="cart/checkout")
+    @ApiOperation(value = "Checkout and empty the cart of user")
+    public void checkout(@RequestBody String username){
+        cartService.checkout(username);
+    }
+    
+    // Retrieving product by ID from services
+    // @RequestMapping(value = "/cart/get/{id}", method = RequestMethod.GET)
+    // @ApiOperation(value = "An api function to get a product from the database by its id." )
+    // public Optional<Cart> getCartById(@PathVariable("id") String id) {
+    //     return cartService.getCartById(id);
+    // }
+    // Adding products to 
+
 }
