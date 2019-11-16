@@ -33,34 +33,26 @@ public class CartController
 
     // Retrieving all products from services 
     @RequestMapping(value = "/cart/getAll", method= RequestMethod.GET)
-    @ApiOperation(value = "An api function to get all products from the database." )
+    @ApiOperation(value = "An api function to get all carts from the database." )
         public Iterable<Cart> getAllCarts() {
         return cartService.getAll();
     }
     
-    @RequestMapping(method= RequestMethod.POST, value ="cart/addProduct")
-    @ApiOperation(value = "Add new item to the cart of user")
+    @RequestMapping(value ="/cart/addProduct", method= RequestMethod.POST)
+    @ApiOperation(value = "An api function that adds a new item to the cart for the user")
     public void addCart(@RequestBody String username, String id, int amount){
         cartService.addToCart(username, id, amount);
     }
-    @RequestMapping(method= RequestMethod.POST, value ="cart/update")
-    @ApiOperation(value = "Update quantity of products")
+    @RequestMapping(value ="/cart/update", method= RequestMethod.POST)
+    @ApiOperation(value = "Update the amount of items in cart")
     public void updateCart(@RequestBody String username, String id, int amount){
         cartService.updateCart(username, id, amount);
     }
 
-    @RequestMapping(method= RequestMethod.POST, value ="cart/checkout")
+    @RequestMapping(value ="/cart/checkout", method= RequestMethod.POST)
     @ApiOperation(value = "Checkout and empty the cart of user")
     public void checkout(@RequestBody String username){
         cartService.checkout(username);
     }
-    
-    // Retrieving product by ID from services
-    // @RequestMapping(value = "/cart/get/{id}", method = RequestMethod.GET)
-    // @ApiOperation(value = "An api function to get a product from the database by its id." )
-    // public Optional<Cart> getCartById(@PathVariable("id") String id) {
-    //     return cartService.getCartById(id);
-    // }
-    // Adding products to 
 
 }

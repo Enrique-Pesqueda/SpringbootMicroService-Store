@@ -38,7 +38,7 @@ public class Product
     
     //Mutators
     public void setId(String id) { this.id = id; }
-    public void setImageurl(String imageURl){ this.imageURL = imageURL; }
+    public void setImageurl(String imageURl){ this.imageURL = imageURl; }
     public void setName(String name){ this.name = name; }
     public void setPrice(Double price){ this.price = price; }
     public void setStock(Integer quantity){ this.stock = quantity; }
