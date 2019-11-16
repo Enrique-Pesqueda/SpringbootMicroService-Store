@@ -5,6 +5,7 @@ package edu.csumb.Webstore.model;
 
 public class User
 {
+    //Member variables
     private String id;
     private String name;
     private String password;

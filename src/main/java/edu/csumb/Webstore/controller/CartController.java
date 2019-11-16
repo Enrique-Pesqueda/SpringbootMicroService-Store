@@ -37,20 +37,19 @@ public class CartController
         public Iterable<Cart> getAllCarts() {
         return cartService.getAll();
     }
-    
     @RequestMapping(value ="/cart/addProduct", method= RequestMethod.POST)
-    @ApiOperation(value = "An api function that adds a new item to the cart for the user")
+    @ApiOperation(value = "An api function that adds a new item to the cart for the user.")
     public void addCart(@RequestBody String username, String id, int amount){
         cartService.addToCart(username, id, amount);
     }
     @RequestMapping(value ="/cart/update", method= RequestMethod.POST)
-    @ApiOperation(value = "Update the amount of items in cart")
+    @ApiOperation(value = "An API function that updates the amount of items in a cart.")
     public void updateCart(@RequestBody String username, String id, int amount){
         cartService.updateCart(username, id, amount);
     }
 
     @RequestMapping(value ="/cart/checkout", method= RequestMethod.POST)
-    @ApiOperation(value = "Checkout and empty the cart of user")
+    @ApiOperation(value = "An api function that empty's a user's cart.")
     public void checkout(@RequestBody String username){
         cartService.checkout(username);
     }

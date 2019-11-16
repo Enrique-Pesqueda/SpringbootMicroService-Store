@@ -46,10 +46,18 @@ public class UserController
     public Optional<User> getUserById(@PathVariable("id") String id) {
         return userService.getUserById(id);
     }
-    // Adding users to 
+    // Adding users to database
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     @ApiOperation(value = "An api function to add users to the database." )
     public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
     }
+    // authenticates user
+    @RequestMapping(value = "/user/auth/", method = RequestMethod.POST)
+    @ApiOperation(value = "An api function to authenticate a user." )
+    public boolean authenticate(@RequestBody String name, String password) {
+        return userService.auth(name, password);
+    }
+
+
 }

@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 
 public class Product
 {
-    //member vars
+    //member variables
     @Id
     private String id;
     private String name;

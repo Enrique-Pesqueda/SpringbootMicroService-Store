@@ -8,8 +8,7 @@ import java.util.HashMap;
 public class Cart
 {
 
-
-    //member vars
+    //member variables
     private String owner;    
     private HashMap<String, Integer> map;
 
