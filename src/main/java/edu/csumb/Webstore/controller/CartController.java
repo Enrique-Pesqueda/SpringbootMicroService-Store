@@ -5,26 +5,14 @@
 
 package edu.csumb.Webstore.controller;
 
-import java.util.Optional;
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import edu.csumb.Webstore.model.Cart;
-import edu.csumb.Webstore.repositories.ProductRepository;
-import edu.csumb.Webstore.repositories.CartRepository;
 import edu.csumb.Webstore.service.CartService;
-import javax.validation.Valid;
-import java.util.List;
-import java.util.ArrayList;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 
 @RestController
 public class CartController
